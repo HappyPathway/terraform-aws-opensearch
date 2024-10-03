@@ -11,11 +11,11 @@ jobs:
   terraform:
     uses: HappyPathway/centralized-actions/.github/workflows/terraform-test.yml@main
     with:
-      terraform_version: ${{vars.TERRAFORM_VERSION}}
-      terraform_api: ${{vars.TERRAFORM_API}}
-      github_username: ${{vars.GH_USERNAME}}
-      github_email: ${{vars.GH_EMAIL}}
-      github_org: ${{ vars.GH_ORG }}
+      terraform_version: ${{ vars.terraform_version }}
+      terraform_api: ${{ vars.terraform_api }}
+      github_username: ${{ github.actor }}
+      github_email: ${{ github.actor }}@roknsound.com
+      github_org: ${{ github.repository_owner }}
       terraform_init: true
       download_cache: false
     secrets:
