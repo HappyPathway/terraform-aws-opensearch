@@ -125,13 +125,13 @@ resource "aws_opensearch_domain" "this" {
   }
 
   dynamic "cognito_options" {
-    for_each = length(var.cognito_options) > 0 ? [var.cognito_options] : []
+    for_each = var.cognito_options.enabled ? ["*"] : []
 
     content {
-      enabled          = try(cognito_options.value.enabled, null)
-      identity_pool_id = cognito_options.value.identity_pool_id
-      role_arn         = cognito_options.value.role_arn
-      user_pool_id     = cognito_options.value.user_pool_id
+      enabled          = var.cognito_options.enabled
+      identity_pool_id = var.cognito_options.identity_pool_id
+      role_arn         = var.cognito_options.role_arn
+      user_pool_id     = var.cognito_options.user_pool_id
     }
   }
 
