@@ -54,7 +54,7 @@ resource "aws_opensearch_domain" "this" {
   }
 
   dynamic "snapshot_options" {
-    for_each = var.automated_snapshot_start_hour == null [] : ["*"]
+    for_each = var.automated_snapshot_start_hour == null ? [] : ["*"]
     content {
       automated_snapshot_start_hour = var.automated_snapshot_start_hour
     }
