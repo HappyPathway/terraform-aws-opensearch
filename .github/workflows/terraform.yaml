@@ -16,6 +16,8 @@ jobs:
       github_username: ${{vars.GH_USERNAME}}
       github_email: ${{vars.GH_EMAIL}}
       github_org: ${{ vars.GH_ORG }}
+      terraform_init: true
+      download_cache: false
     secrets:
       TFE_TOKEN: ${{ secrets.TFE_TOKEN }}
       GH_TOKEN: ${{ secrets.GH_TOKEN }}
