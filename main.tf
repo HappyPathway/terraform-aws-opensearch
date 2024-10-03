@@ -19,7 +19,7 @@ locals {
 
   static_domain_arn = "arn:${local.partition}:es:${local.region}:${local.account_id}:domain/${var.domain_name}"
 
-  tags = merge(var.tags, { terraform-aws-modules = "opensearch" })
+  tags = var.tags
 }
 
 ################################################################################
@@ -42,7 +42,7 @@ resource "aws_opensearch_domain" "this" {
       internal_user_database_enabled = try(advanced_security_options.value.internal_user_database_enabled, null)
 
       dynamic "master_user_options" {
-        for_each = try([advanced_security_options.value.master_user_options], [{}])
+        for_each = try([advanced_security_options.value.master_user_options], [])
 
         content {
           master_user_arn      = try(master_user_options.value.master_user_arn, null) != null ? try(master_user_options.value.master_user_arn, data.aws_iam_session_context.current[0].issuer_arn) : null
