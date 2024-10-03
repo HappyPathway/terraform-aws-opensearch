@@ -319,7 +319,7 @@ variable "cognito_options" {
     identity_pool_id = string # - Cognito Identity pool used by the domain.
     role_arn = string # - IAM Role with the AmazonOpenSearchServiceCognitoAccess policy attached.
   })
-default = {}
+  default = null
 }
 
 variable automated_snapshot_start_hour {
