@@ -314,15 +314,15 @@ variable "security_group_tags" {
 variable "cognito_options" {
   description = "Domain Amazon Cognito Authentication options for Dashboard."
   type = object({
-    enabled = bool # - Whether Amazon Cognito Authentication is enabled.
-    user_pool_id = string # - Cognito User pool used by the domain.
+    enabled          = bool   # - Whether Amazon Cognito Authentication is enabled.
+    user_pool_id     = string # - Cognito User pool used by the domain.
     identity_pool_id = string # - Cognito Identity pool used by the domain.
-    role_arn = string # - IAM Role with the AmazonOpenSearchServiceCognitoAccess policy attached.
+    role_arn         = string # - IAM Role with the AmazonOpenSearchServiceCognitoAccess policy attached.
   })
   default = null
 }
 
-variable automated_snapshot_start_hour {
-  type = string # - Hour during which the service takes an automated daily snapshot of the indices in the domain.
+variable "automated_snapshot_start_hour" {
+  type    = string # - Hour during which the service takes an automated daily snapshot of the indices in the domain.
   default = null
 }
