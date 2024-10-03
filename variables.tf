@@ -315,9 +315,9 @@ variable "cognito_options" {
   description = "Domain Amazon Cognito Authentication options for Dashboard."
   type = object({
     enabled          = bool   # - Whether Amazon Cognito Authentication is enabled.
-    user_pool_id     = string # - Cognito User pool used by the domain.
-    identity_pool_id = string # - Cognito Identity pool used by the domain.
-    role_arn         = string # - IAM Role with the AmazonOpenSearchServiceCognitoAccess policy attached.
+    user_pool_id     = optional(string) # - Cognito User pool used by the domain.
+    identity_pool_id = optional(string) # - Cognito Identity pool used by the domain.
+    role_arn         = optional(string) # - IAM Role with the AmazonOpenSearchServiceCognitoAccess policy attached.
   })
   default = null
 }
