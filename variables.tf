@@ -183,8 +183,24 @@ variable "access_policies" {
 
 variable "access_policy_statements" {
   description = "A map of IAM policy [statements](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#statement) for custom permission usage"
-  type        = any
-  default     = {}
+  type     = list(object({
+    effect = string
+    principals = optional(list(object{
+      type        = string
+      identifiers = list(string)
+    }), [])
+    actions = optional(list(string), [])
+    condition = optional(list(object({
+       test     = string
+       variable = string
+       values   = list(string)
+    })), [])
+    principals = optional(list(object({
+      type        = string
+      identifiers = list(string)
+    })), [])
+    resources = optional(list(string), [])
+  }))
 }
 
 variable "access_policy_source_policy_documents" {
