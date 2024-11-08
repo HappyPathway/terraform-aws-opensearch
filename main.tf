@@ -157,7 +157,7 @@ resource "aws_opensearch_domain" "this" {
       iops        = try(ebs_options.value.iops, null)
       throughput  = try(ebs_options.value.throughput, null)
       volume_size = try(ebs_options.value.volume_size, null)
-      volume_type = try(ebs_options.value.volume_type, "gp3")
+      volume_type = try(ebs_options.value.volume_type, null)
     }
   }
 

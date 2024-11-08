@@ -63,7 +63,11 @@ variable "domain_name" {
 
 variable "ebs_options" {
   description = "Configuration block for EBS related options, may be required based on chosen [instance size](https://aws.amazon.com/elasticsearch-service/pricing/)"
-  type        = any
+  type = object({
+    ebs_enabled = optional(bool, true)
+    volume_size = optional(number, 125)
+    volume_type = optional(string, null)
+  })
   default = {
     ebs_enabled = true
     volume_size = 64
