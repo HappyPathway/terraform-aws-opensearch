@@ -278,6 +278,11 @@ resource "aws_opensearch_domain_policy" "this" {
 
   domain_name     = aws_opensearch_domain.this[0].domain_name
   access_policies = local.create_access_policy ? data.aws_iam_policy_document.this[0].json : var.access_policies
+  lifecycle {
+    ignore_changes = [
+      access_policies
+    ]
+  }
 }
 
 data "aws_iam_policy_document" "this" {
