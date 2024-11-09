@@ -237,6 +237,12 @@ resource "aws_opensearch_domain" "this" {
   }
 
   tags = local.tags
+
+  lifecycle {
+    ignore_changes = [
+      auto_tune_options
+    ]
+  }
 }
 
 ################################################################################
