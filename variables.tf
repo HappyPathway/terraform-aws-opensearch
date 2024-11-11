@@ -26,6 +26,7 @@ variable "advanced_security_options" {
   default = {
     enabled                = true
     anonymous_auth_enabled = false
+    master_user_options    = optional(list(any), [])
   }
 }
 
