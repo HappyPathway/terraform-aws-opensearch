@@ -289,6 +289,7 @@ resource "aws_opensearch_domain_policy" "this" {
   }
 }
 
+
 data "aws_iam_policy_document" "this" {
   count = local.create_access_policy ? 1 : 0
 
