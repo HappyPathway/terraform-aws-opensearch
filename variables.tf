@@ -22,11 +22,18 @@ variable "advanced_options" {
 
 variable "advanced_security_options" {
   description = "Configuration block for [fine-grained access control](https://docs.aws.amazon.com/elasticsearch-service/latest/developerguide/fgac.html)"
-  type        = any
+  type = object({
+    enabled = optional(bool, true)
+    master_user_options = optional(object({
+      master_user_arn      = string
+      master_user_name     = string
+      master_user_password = string
+    }), null)
+    anonymous_auth_enabled = optional(bool, false)
+  })
   default = {
     enabled                = true
     anonymous_auth_enabled = false
-    master_user_options    = optional(list(any), [])
   }
 }
 
