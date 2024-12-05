@@ -25,7 +25,6 @@ variable "advanced_security_options" {
   type = object({
     enabled = optional(bool, true)
     master_user_options = optional(object({
-      master_user_arn      = string
       master_user_name     = string
       master_user_password = string
     }), null)
