@@ -29,6 +29,7 @@ variable "advanced_security_options" {
       master_user_password = string
     }), null)
     anonymous_auth_enabled = optional(bool, false)
+    internal_user_database_enabled = optional(bool, true)
   })
   default = {
     enabled                = true
