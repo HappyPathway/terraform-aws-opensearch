@@ -5,9 +5,9 @@ data "aws_partition" "current" {}
 data "aws_caller_identity" "current" {}
 
 locals {
-  account_id = try(data.aws_caller_identity.current[0].account_id, "")
-  partition  = try(data.aws_partition.current[0].partition, "")
-  region     = try(data.aws_region.current[0].name, "")
+  account_id = try(data.aws_caller_identity.current.account_id, "")
+  partition  = try(data.aws_partition.current.partition, "")
+  region     = try(data.aws_region.current.name, "")
 
   static_domain_arn = "arn:${local.partition}:es:${local.region}:${local.account_id}:domain/${var.domain_name}"
 
