@@ -274,20 +274,16 @@ resource "aws_opensearch_vpc_endpoint" "this" {
 # Access Policy
 ################################################################################
 
-locals {
-  create_access_policy = var.create && var.create_access_policy && (length(var.access_policy_statements) > 0 || length(var.access_policy_source_policy_documents) > 0 || length(var.access_policy_override_policy_documents) > 0)
-}
-
 resource "aws_opensearch_domain_policy" "this" {
-  count = var.create && var.enable_access_policy && (local.create_access_policy || var.access_policies != null) ? 1 : 0
+  count = var.create_access_policy ? 1 : 0
 
   domain_name     = aws_opensearch_domain.this[0].domain_name
-  access_policies = local.create_access_policy ? data.aws_iam_policy_document.this[0].json : var.access_policies
+  access_policies = var.access_policies == null ? data.aws_iam_policy_document.this[0].json : var.access_policies
 }
 
 
 data "aws_iam_policy_document" "this" {
-  count = local.create_access_policy ? 1 : 0
+  count = var.create_access_policy ? 1 : 0
 
   source_policy_documents   = var.access_policy_source_policy_documents
   override_policy_documents = var.access_policy_override_policy_documents
