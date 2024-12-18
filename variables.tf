@@ -28,7 +28,7 @@ variable "advanced_security_options" {
       master_user_name     = string
       master_user_password = string
     }), null)
-    anonymous_auth_enabled = optional(bool, false)
+    anonymous_auth_enabled         = optional(bool, false)
     internal_user_database_enabled = optional(bool, true)
   })
   default = {
@@ -349,4 +349,10 @@ variable "cognito_options" {
 variable "automated_snapshot_start_hour" {
   type    = string # - Hour during which the service takes an automated daily snapshot of the indices in the domain.
   default = null
+}
+
+variable "include_default_service_policy" {
+  description = "Whether to include the default service-linked role policy for the OpenSearch Service"
+  type        = bool
+  default     = true
 }

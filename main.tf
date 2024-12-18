@@ -297,6 +297,22 @@ data "aws_iam_policy_document" "this" {
   source_policy_documents   = var.access_policy_source_policy_documents
   override_policy_documents = var.access_policy_override_policy_documents
 
+  # default required access policy
+  dynamic "statement" {
+    for_each = var.include_default_service_policy ? ["yup"] : []
+    content {
+      effect = "Allow"
+
+      principals {
+        type        = "*"
+        identifiers = ["*"]
+      }
+
+      actions   = ["es:*"]
+      resources = ["arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.var.domain_name}/*"]
+    }
+  }
+
   dynamic "statement" {
     for_each = var.access_policy_statements
 
