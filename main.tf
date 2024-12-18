@@ -294,7 +294,7 @@ data "aws_iam_policy_document" "this" {
       }
 
       actions   = ["es:*"]
-      resources = ["arn:aws:es:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:domain/${var.domain_name}/*"]
+      resources = ["arn:${local.partition}:es:${local.region}:${local.account_id}:domain/${var.domain_name}/*"]
     }
   }
 
