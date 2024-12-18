@@ -238,7 +238,8 @@ resource "aws_opensearch_domain" "this" {
 
   lifecycle {
     ignore_changes = [
-      auto_tune_options
+      auto_tune_options,
+      cluster_config[0].warm_count
     ]
   }
 }
