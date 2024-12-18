@@ -1,14 +1,8 @@
-data "aws_region" "current" {
-  count = var.create ? 1 : 0
-}
+data "aws_region" "current" {}
 
-data "aws_partition" "current" {
-  count = var.create ? 1 : 0
-}
+data "aws_partition" "current" {}
 
-data "aws_caller_identity" "current" {
-  count = var.create ? 1 : 0
-}
+data "aws_caller_identity" "current" {}
 
 locals {
   account_id = try(data.aws_caller_identity.current[0].account_id, "")
