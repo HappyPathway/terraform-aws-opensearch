@@ -363,5 +363,5 @@ variable "es_principal" {
     type        = optional(string, "*")
     identifiers = optional(list(string), ["*"])
   })
-  default = null
+  default = {}
 }
