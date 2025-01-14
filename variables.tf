@@ -356,3 +356,12 @@ variable "include_default_service_policy" {
   type        = bool
   default     = true
 }
+
+variable "es_principal" {
+  description = "The ARN of the principal to allow access to the domain"
+  type = object({
+    type        = optional(string, "*")
+    identifiers = optional(list(string), ["*"])
+  })
+  default = null
+}

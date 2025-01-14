@@ -289,8 +289,8 @@ data "aws_iam_policy_document" "this" {
       effect = "Allow"
 
       principals {
-        type        = "*"
-        identifiers = ["*"]
+        type        = lookup(var.es_principal, "type", "*")
+        identifiers = lookup(var.es_principal, "identifiers", ["*"])
       }
 
       actions   = ["es:*"]
