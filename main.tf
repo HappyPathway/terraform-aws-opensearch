@@ -290,8 +290,8 @@ data "aws_iam_policy_document" "this" {
       effect = "Allow"
 
       principals {
-        type        = lookup(var.es_principal, "type", "AWS")
-        identifiers = lookup(var.es_principal, "identifiers", ["arn:${local.partition}:iam::${local.account_id}:root"])
+        type        = var.es_principal.override ? lookup(var.es_principal, "type", "AWS") : "AWS"
+        identifiers = var.es_principal.override ? lookup(var.es_principal, "identifiers") : ["arn:${local.partition}:iam::${local.account_id}:root"]
       }
 
       actions   = ["es:ESHttp*"]
