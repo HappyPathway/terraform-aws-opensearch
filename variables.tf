@@ -361,7 +361,7 @@ variable "es_principal" {
   description = "The ARN of the principal to allow access to the domain"
   type = object({
     type        = optional(string, "*")
-    identifiers = optional(list(string), ["*"])
+    identifiers = optional(list(string))
   })
   default = {}
 }
