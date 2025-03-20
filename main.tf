@@ -233,7 +233,9 @@ resource "aws_opensearch_domain" "this" {
   lifecycle {
     ignore_changes = [
       auto_tune_options,
-      cluster_config[0].warm_count
+      cluster_config[0].warm_count,
+      advanced_security_options[0].master_user_options[0].master_user_name,
+      advanced_security_options[0].master_user_options[0].master_user_password
     ]
   }
 }
