@@ -291,11 +291,11 @@ data "aws_iam_policy_document" "this" {
       effect = "Allow"
 
       principals {
-        type        = lookup(var.es_principal, "type", "*")
-        identifiers = lookup(var.es_principal, "identifiers", ["*"])
+        type        = var.es_principal.override ? lookup(var.es_principal, "type", "AWS") : "AWS"
+        identifiers = var.es_principal.override ? lookup(var.es_principal, "identifiers") : ["arn:${local.partition}:iam::${local.account_id}:root"]
       }
 
-      actions   = ["es:*"]
+      actions   = ["es:ESHttp*"]
       resources = ["arn:${local.partition}:es:${local.region}:${local.account_id}:domain/${var.domain_name}/*"]
     }
   }
